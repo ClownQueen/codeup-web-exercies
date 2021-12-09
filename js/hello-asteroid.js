@@ -9,8 +9,10 @@ console.log("My favorite food is the Spicy chicken sandwhich from Whataburger" +
 // Place the favorite food phrases into variables
 // concatenate those variables inside a console log!
 
-var FavoriteFood = "Spicy chicken Sandwhich from Whataburger"
+var Arrangement = "\t\tbut \n\treplace the mayo \twith Buffalo sauce and \t\tadd Jalapenos"
 
-var Phase1 = "my favorite food is "
+var FavoriteFood = "\tSpicy \t\tchicken \t\t\tSandwhich \nfrom \t\tWhataburger "
 
-console.log(Phase1 + FavoriteFood)
+var Phase1 = "my favorite food is \n"
+
+console.log(Phase1 + FavoriteFood + Arrangement)
