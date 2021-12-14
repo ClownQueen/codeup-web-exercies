@@ -47,7 +47,7 @@
 //    }
 //}
 
-//console.log(analyzeColors(randomColor))
+//console.log(analyzeColors('blue'))
 /**
  * TODO:
  * Pass the `randomColor` variable to your 'analyzeColor' function and console.log the results.
@@ -124,6 +124,10 @@ switch (analyzeColors){
  * Test your function by passing it various values and checking for the expected
  * return value.
  */
+let originalPrice = 100;
+function calculateTotal(num){
+    return num.parseFloat(2)
+}
 
 /**
  * TODO:
@@ -134,7 +138,8 @@ switch (analyzeColors){
  * price before the discount was, and what their price after the discount is.
  */
 // Generate a random number between 0 and 6
-// let luckyNumber = Math.floor(Math.random() * 6);
+let luckyNumber = Math.floor(Math.random() * 6);
+
 
 /**
  * TODO:
