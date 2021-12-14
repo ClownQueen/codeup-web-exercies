@@ -9,6 +9,15 @@
  * > sayHello("codeup") // returns "Hello, codeup!"
  */
 
+function sayHello(name) {
+    return "Hello " + name
+}
+
+let helloMessage = sayHello("Micah")
+console.log(helloMessage)
+
+let myName = Micah
+console.log(helloMessage(myName))
 /**
  * TODO:
  * Call the function 'sayHello' and pass your name as a string literal argument.
@@ -28,6 +37,13 @@
 // and stores it in a variable named random
 var random = Math.floor((Math.random() * 3) + 1);
 
+function isTwo() {
+    if (random === 2) {
+        console.log("true")
+    } else {
+        console.log("false")
+    }
+}
 /**
  * TODO:
  * Create a function called 'isTwo' that takes a number as a parameter.
@@ -57,7 +73,12 @@ var random = Math.floor((Math.random() * 3) + 1);
  * > calculateTip(0.25, 25.50) // returns 6.375
  * > calculateTip(0.15, 33.42) // returns 5.013
  */
+let billTotal = prompt("What is your bill total?")
+let Tip = prompt("What Percentage would you like to tip, in decimals?")
 
+function calculateTip() {
+    alert("Your tip will be $" + (billTotal * Tip))
+}
 /**
  * TODO:
  * Use prompt and alert in combination with your calculateTip function to
@@ -79,3 +100,9 @@ var random = Math.floor((Math.random() * 3) + 1);
  *
  * > applyDiscount(45.99, 0.12) // 40.4712
  */
+let OriginalPrice = 100;
+let discountPercent = Math.floor((Math.random() * 0) + 1);
+
+function applyDiscount() {
+    console.log(OriginalPrice, discountPercent)
+}
