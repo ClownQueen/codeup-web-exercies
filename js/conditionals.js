@@ -76,25 +76,25 @@
  */
 let analyzeColors = prompt("name a color")
 
-switch (analyzeColors){
+switch (analyzeColors) {
     case 'red':
         alert("Tomatoes are red");
-        break;
+    break;
     case 'orange':
         alert("Tangerines are orange");
-        break;
+    break;
     case 'yellow':
         alert("Rubber Duckies are yellow");
-        break;
+    break;
     case 'green':
         alert("Grapes are green");
-        break;
+    break;
     case 'blue':
         alert("Blueberries are blue");
-        break;
+    break;
     default:
-        alert("I don't know anything in that color")
-        break;
+        alert("I don't know anything about that color");
+    break;
 }
 /**
  * TODO:
@@ -124,11 +124,25 @@ switch (analyzeColors){
  * Test your function by passing it various values and checking for the expected
  * return value.
  */
-let originalPrice = 100;
-function calculateTotal(num){
-    return num.parseFloat(2)
+function calculateTotal(luckNumber, totalAmount){
+    if (luckNumber == 0){
+        return totalAmount
+    } else if (luckNumber == 1){
+        return totalAmount * .9
+    }else if (luckNumber == 2){
+        return totalAmount * .75
+    } else if (luckNumber == 3){
+        return totalAmount * .65
+    } else if (luckNumber == 4){
+        return totalAmount * .5
+    } else {
+        return totalAmount * 0
+    }
 }
 
+console.log(calculateTotal(0, 100)) // returns 100
+console.log(calculateTotal(4, 100)) // returns 50
+console.log(calculateTotal(5, 100)) // returns 0
 /**
  * TODO:
  * Uncomment the line below to generate a random number between 0 and 5.
@@ -140,7 +154,11 @@ function calculateTotal(num){
 // Generate a random number between 0 and 6
 let luckyNumber = Math.floor(Math.random() * 6);
 
+let totalAmount = prompt("enter you total amount")
 
+let discountedAmount = calculateTotal(luckyNumber, totalAmount)
+
+alert("Your total amount is " + totalAmount + "your lucky number is " + luckyNumber + "and your total amount it " + discountedAmount)
 /**
  * TODO:
  * Write some JavaScript that uses a `confirm` dialog to ask the user if they
@@ -159,3 +177,22 @@ let luckyNumber = Math.floor(Math.random() * 6);
  * Can you refactor your code to use functions?
  * HINT: The way we prompt for a value could be improved
  */
+let enterNumber = confirm("Would you like to enter a number?")
+
+console.log(enterNumber)
+
+if (enterNumber == true){
+    let myNumber = prompt("enter a number")
+    if (myNumber % 2 === 0){
+        alert("number is even.")
+    } else {
+        alert("number is odd.")
+    }
+    if (myNumber > 0) {
+        alert("number is positive")
+    } else {
+        alert("number is negative")
+    }
+    alert("your number plus 100 equals " + (100 + myNumber))
+}
+
