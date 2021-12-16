@@ -6,7 +6,9 @@
 let counter = 0;
 
 while (counter <= 25) {
-    counter += 2
+    if(counter % 2 === 0)
     console.log("Your number is: " + counter)
     console.log("***************************")
+
+    counter++
 }
