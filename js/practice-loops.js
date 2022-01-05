@@ -41,14 +41,14 @@ evenOrOdd(16)
 function getPassword() {
     let pw = "Happiness"
     let attempts = 3;
-    let userInput = prompt("Please enter Password.")
+    let userInput = "";
     for (let o = 1; o < attempts; o++){
-        if (userInput !== pw) {
-            alert("Password is incorrect")
-            userInput = prompt("Please enter Password.")
-        } else {
+        userInput = prompt("Please enter Password.")
+        if (userInput === pw) {
             alert("Welcome Home!")
+            return;
         }
+        alert("You are now locked out.")
     }
 }
 
