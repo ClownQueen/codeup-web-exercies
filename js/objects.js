@@ -102,6 +102,37 @@ printAllAmounts(shoppers);
  * > console.log(books[0].author.firstName) // "Douglas"
  * > console.log(books[0].author.lastName) // "Adams"
  */
+let books = [];
+
+books[0] = {}
+books[0].title = "Frankenweenie"
+books[0].firstName = "Elizabeth"
+books[0].lastName = "Rudnick"
+
+books[1] = {
+    title: "No Home",
+    firstName: "Wanan",
+    lastName: "N/A"
+}
+
+books[2] = {
+    title: "Diary of a Wimpy Kid",
+    firstName: "Jeff",
+    lastName: "Kinney"
+}
+
+books[3] = {
+    title: "Princess Diary",
+    firstName: "Meg",
+    lastName: "Cabot"
+
+}
+
+books[4] = {
+    title: "Bungo Stray Dogs",
+    firstName: "Kafka",
+    lastName: "Asagiri"
+}
 
 /**
  * TODO:
@@ -127,6 +158,16 @@ printAllAmounts(shoppers);
  *      ---
  *      ...
  */
+
+function favoriteBooks(books) {
+    for (let i = 0; i < books.length; i++){
+        console.log("\n Book # " + books.indexOf(i));
+        console.log("\n Title: " + books.title)
+        console.log("\n Author: " + books.firstName + " " + books.lastName)
+    }
+}
+
+favoriteBooks(books);
 
 /**
  * Bonus:

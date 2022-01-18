@@ -41,6 +41,10 @@ evenAndOdds();
 999999999
  */
 
+for (let i = 0; i < 9; i++){
+
+}
+
 /* Create a for loop that uses console.log to create the output shown below.
 100
 95
@@ -63,3 +67,8 @@ evenAndOdds();
 10
 5
  */
+
+    for (let i = 100; i <= 5; i--){
+        console.log(i);
+
+    }

@@ -27,7 +27,7 @@ function sellSomeIceCream() {
         allCones -= conesSold;
         console.log("There are " + allCones + " still remaining!")
 
-    } while (allCones > 0) /*stop when we runn out of cones */{
+    } while (allCones > 0) /*stop when we run out of cones */{
         console.log(allCones)
     }
 }
