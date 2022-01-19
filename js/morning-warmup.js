@@ -19,16 +19,40 @@
  removeAll(bugs, "mosquito") should return ["ant", "scorpion", "ant", "ant", "typo", "reference error", "type error"]
  removeAll(bugs, "roach") should return the original array b/c “roach” has no occurrances. */
 
-let bugs = ["mosquito", "ant", "scorpion", "ant", "ant", "mosquito", "typo", "reference error", "type error"];
+//let bugs = ["mosquito", "ant", "scorpion", "ant", "ant", "mosquito", "typo", "reference error", "type error"];
 
-function removeAll(myArray, removingValue) {
-    let filteredArr = [];
-    for (let i = 0; i < myArray.length; i++){
-        if (myArray[i] !== removingValue){
-            filteredArr.push(myArray[i]);
-        }
+// function removeAll(myArray, removingValue) {
+//     let filteredArr = [];
+//     for (let i = 0; i < myArray.length; i++){
+//         if (myArray[i] !== removingValue){
+//             filteredArr.push(myArray[i]);
+//         }
+//     }
+//     return filteredArr;
+// }
+//
+// console.log(removeAll(bugs, 'ant'))
+
+let myCats = [
+    {
+        catName: "Fifi",
+        age: 5
+    },
+    {
+        catName: "Fluffy",
+        age: 3
+    },
+    {
+        catName: "Abby",
+        age: 7
     }
-    return filteredArr;
+];
+/** Write a JS function called getNthCat that takes an array of cat objects as a first parameter called cats, and n as a second parameter.
+ The function returns the cat object at index n in the cats array. */
+
+function getNthCat(cats, n) {
+    return cats[n]
 }
 
-console.log(removeAll(bugs, 'ant'))
+// print out the cat at index 1
+console.log(getNthCat(myCats, 1));
