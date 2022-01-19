@@ -159,15 +159,13 @@ books[4] = {
  *      ...
  */
 
-function favoriteBooks(books) {
-    for (let i = 0; i < books.length; i++){
-        console.log("\n Book # " + books.indexOf(i));
-        console.log("\n Title: " + books.title)
-        console.log("\n Author: " + books.firstName + " " + books.lastName)
-    }
-}
+books.forEach(function (book) {
+    console.log("This book is at index " + books.indexOf(book))
+    console.log("\tthis book is called" + book.title);
+    console.log("\tThe author is " + book.author.firstName + " "+ book.author.lastName);
+})
 
-favoriteBooks(books);
+console.log(books[0].title);
 
 /**
  * Bonus:

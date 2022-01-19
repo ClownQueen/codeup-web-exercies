@@ -2,12 +2,18 @@
 
 //prompt for an odd number between 1 and 50
 
-let numberToStopAt = prompt("Pick a number between 1 and 50")
-
-for (let number = 1; number < 50; number++) {
-    if (numberToStopAt % 2 !== 1){
+do{
+    var numToSkip = parseInt(prompt("PLease enter a number between 1 and 50"));
+    if ((numToSkip) > 1 && (numToSkip) < 50){
+        break;
+    }
+} while (((numToSkip) <= 1 || (numToSkip) >= 50) || !numToSkip)
+for (let i = 0; i < 50; i++) {
+    if (i === parseInt(numToSkip)) {
+        console.log("yikes skipping number: " + i);
         continue;
     }
-    console.log("This number is Odd: "  + number)
+    if (i % 2 !== 0){
+        console.log("here is an odd number"  + i)
+    }
 }
-

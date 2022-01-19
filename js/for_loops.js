@@ -41,9 +41,27 @@ evenAndOdds();
 999999999
  */
 
-for (let i = 0; i < 9; i++){
+let s = "";
+//First for loop going 1 to 9
+for (let i = 1; i < 10; i++){
+    // console.log("this is i " + i)
+    //Inner loop starting at i and decrementing to 0
+    //This means i=1 will run once, i=2 will run twice, etc.
+    for (let j = i; j > 0; j--){
 
+        //Append our current outer loop iteration to the empty string.
+        s += i
+        // console.log("this is j " + j )
+        // console.log("this is s " + s)
+    }
+    //Log the entire completed string
+    console.log(s)
+    //Reset the string for next iteration
+    s = "";
 }
+
+
+let str = ""
 
 /* Create a for loop that uses console.log to create the output shown below.
 100
@@ -68,7 +86,6 @@ for (let i = 0; i < 9; i++){
 5
  */
 
-    for (let i = 100; i <= 5; i--){
-        console.log(i);
-
-    }
+for (let i = 100; i > 0; i -= 5) {
+    console.log(i)
+}
