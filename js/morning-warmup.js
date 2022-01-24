@@ -57,3 +57,17 @@
 //
 // // print out the cat at index 1
 // console.log(getNthCat(myCats, 1));
+
+/** Write a function called reverseString that takes in a string and returns a string
+ * that has the characters of the original string in reverse order.
+ example: reverseString('hello') - returns 'olleh' */
+// function reverseString(input) {
+//     let results = "";
+//     for (let i = input.length-1; i >= 0; i--){
+//         results = results + input[i];
+//     }
+//     return results;
+// }
+//
+//
+// console.log(reverseString("hello"))
