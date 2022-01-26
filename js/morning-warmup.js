@@ -71,3 +71,18 @@
 //
 //
 // console.log(reverseString("hello"))
+
+/** Write a function called findAverage that takes in an array of integers representing grades and returns the average.
+ Example input: [95, 74, 86, 100]
+ Example output: 88.75 */
+
+// function findAverage(num) {
+//     let sum = 0
+//
+//     num.forEach(function (num) {
+//         sum = sum + num
+//     })
+//
+//     return sum / num.length
+//
+// }
