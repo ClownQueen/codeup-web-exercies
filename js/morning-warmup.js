@@ -95,8 +95,8 @@
  e.g., console.log(sumOfSquares(2, 3));
  will return 13 */
 
-function sumOfSquares(a, b) {
-    return Math.pow(a, 2) + Math.pow(b, 2)
-}
-
-console.log(sumOfSquares(2,2))
+// function sumOfSquares(a, b) {
+//     return Math.pow(a, 2) + Math.pow(b, 2)
+// }
+//
+// console.log(sumOfSquares(2,2))
