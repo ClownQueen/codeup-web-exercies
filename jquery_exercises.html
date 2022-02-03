@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jquery</title>
+<!--    <style>-->
+<!--        body{-->
+<!--            background-image: url("/img/fear.jpeg");-->
+<!--            background-size: 100% 100%;-->
+<!--            background-repeat: no-repeat;-->
+<!--            background-attachment: fixed;-->
+<!--        }-->
+<!--    </style>-->
+</head>
+<body>
+<script src="/js/jquery-2.2.4.js"></script>
+<!--<button onclick="changePic()" style="color: transparent; background-color: transparent; border: transparent; cursor: pointer;">Meet Your true Savior</button>-->
+<h1 id="topic" class="codeup">Middle Kids Club</h1>
+<p id="Paragraph" class="statement">Infamous Quotes from My Siblings</p>
+<ul id="Quotes1" class="codeup">
+    <li>"Back it up like a dump truck"</li>
+    <li>"Joe mama"</li>
+    <li>"I like my friends, like I like my his:."</li>
+    <li>"Good Job Little Boy"</li>
+</ul>
+<div id="codeup" class="Separation">
+    <ol id="Quotes2" class="codeup">
+        <li>"Who?Who?CARES, Who Cares"</li>
+        <li>"What?What?EVER, What Ever"</li>
+        <li>Spgahittie</li>
+        <li>awww slay</li>
+    </ol>
+</div>
+
+<script>
+
+    // $('.codeup').css('border', '1px solid red')
+
+    $('li').css('font-size', '20px')
+    $('h1, p, li').css('background-color', 'yellow')
+
+    window.onload = function (){
+        // alert('Bad Decision Mark')
+        // alert("Finished window")
+    }
+
+    $(document).ready(function(){
+       // alert('Fear the Alternates')
+       //  alert("Finished loading in")
+       //  alert($('#topic').html())
+        alert($('h1').html())
+    });
+
+
+    // function changePic() {
+    //     document.body.style.backgroundImage = "url('/img/satan.png')";
+    //     document.body.style.backgroundRepeat = "no-repeat";
+    //     document.body.style.backgroundSize = "100% 100%";
+    // }
+
+</script>
+</body>
+</html>
