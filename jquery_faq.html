@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQuery-FAQ</title>
+    <style>
+        .invisible{
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+<p>10 FAQs about Maximum Parks: </p>
+<button id="changer">Reveal Me</button>
+<dl>
+    <dt>Where can I park?</dt>
+    <dd class="invisible">there will be a parking zone near the park that you can park at.</dd>
+
+    <dt>can I hike?</dt>
+    <dd class="invisible">You can hike, as long as you follow the trail provided.</dd>
+
+    <dt>Do I need to bring my Wallet?</dt>
+    <dd class="invisible">You do not need to bring your wallet.</dd>
+
+    <dt>When do you open?</dt>
+    <dd class="invisible">We open at 9am so that people can enjoy the early morning air if they wish to hike</dd>
+
+    <dt>What time do you close?</dt>
+    <dd class="invisible">We close at 5:30pm so employees have time to clean the area and get home.</dd>
+
+    <dt>Can we bring food and drinks?</dt>
+    <dd class="invisible">Sadly you cannot bring food, because of the littering problem sustained from visitors.</dd>
+
+    <dt>Can we feed the animals?</dt>
+    <dd class="invisible">Yes you can, we have feeding stations for the animals with their designated food.</dd>
+
+    <dt>Can we take pictures with the Animals?</dt>
+    <dd class="invisible">You may take pictures with the animals with the guide of one of our employees.</dd>
+
+    <dt>Do you provide Wifi?</dt>
+    <dd class="invisible">We do provide public wifi for the customers to use if need be.</dd>
+
+    <dt>Are there restrooms?</dt>
+    <dd class="invisible">Yes we have plenty of restrooms for costumers to use and changing areas for your babies.</dd>
+</dl>
+
+<script src="/js/jquery-2.2.4.js"></script>
+<script>
+    "use strict";
+
+
+
+    $(document).ready(function () {
+        $('#changer').click(function (e) {
+            e.preventDefault();
+            $('.invisible').toggleClass('visible');
+        })
+    })
+
+
+
+
+</script>
+</body>
+</html>
