@@ -7,11 +7,15 @@
         .invisible{
             visibility: hidden;
         }
+        /*.highlighting{*/
+        /*    background-color: lightyellow;*/
+        /*}*/
     </style>
 </head>
 <body>
 <p>10 FAQs about Maximum Parks: </p>
-<button id="changer">Reveal Me</button>
+<button id="changer" type="button">Reveal Me</button>
+<button id="highlight" type="button">Highlight this place</button>
 <dl>
     <dt>Where can I park?</dt>
     <dd class="invisible">there will be a parking zone near the park that you can park at.</dd>
@@ -44,21 +48,55 @@
     <dd class="invisible">Yes we have plenty of restrooms for costumers to use and changing areas for your babies.</dd>
 </dl>
 
+<h3 class="Park-names">Highlight Park</h3>
+<ul class="park-facts">
+    <li class="first">Has multiple trails to hike</li>
+    <li class="second">There is an area you can buy drinks</li>
+    <li class="third">Is a very peaceful and natural park</li>
+    <li class="final">will allow pet dogs to be brought</li>
+</ul>
+
+<h3 class="Park-names">Radiator park</h3>
+<ul class="park-facts">
+    <li class="first">Is named after Radiator Springs from Cars</li>
+    <li class="second">It is a place where you can have a picnic</li>
+    <li class="third">Sometimes has concerts planned</li>
+    <li class="final">Also plans outdoor movies for people to come to</li>
+</ul>
+
+<h3 class="Park-names">Kiddie Park</h3>
+<ul class="park-facts">
+    <li class="first">Is a park that has a huge area that is a kids playground</li>
+    <li class="second">the most famous part of the kids side is the swings</li>
+    <li class="third">The other side of the park could be used to play with pets or have picnics</li>
+    <li class="final">Has things planned for Easter, 4 of July, Halloween, ect.</li>
+</ul>
+
 <script src="/js/jquery-2.2.4.js"></script>
 <script>
     "use strict";
-
-
 
     $(document).ready(function () {
         $('#changer').click(function (e) {
             e.preventDefault();
             $('dd').toggleClass('invisible');
         })
+
+        let highlight = function (){
+            $(this).children().last().css('background-color', 'yellow')
+        }
+        $('#highlight').click(function (e){
+            e.preventDefault();
+            $('.park-facts').each(highlight)
+        })
+        $('h3').click(function (){
+            $(this).next().css('font-weight', 'Bold')
+        })
+        $('li').click(function(){
+            $(this).parent().children().first().css('color', 'blue')
+        })
+
     })
-
-
-
 
 </script>
 </body>
