@@ -6,5 +6,7 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+#.gitignore
+.gitignore
 #Mapbox Key
-/js/keys.js
+keys.js
