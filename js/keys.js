@@ -1,1 +1,0 @@
-let mapBoxKey = 'pk.eyJ1IjoibWljYWh3b29kIiwiYSI6ImNremVtNzZmNDJjMncydm1taGR2MmF3emQifQ.voKgOVP0s1ppSeWhS4E4Ig'
