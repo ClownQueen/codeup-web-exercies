@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>MapBox Map</title>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css" type="text/css">
     <style>
         #firstMap{
             width: 100%;
@@ -12,11 +13,13 @@
     </style>
 </head>
 <body>
-<div id='map'></div>
+<div id='firstMap'></div>
 
 <script src="/js/jquery-2.2.4.js"></script>
 <!-- Mapbox JS -->
 <script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>
+<!-- Gecode JS -->
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
 <!-- Key connection-->
 <script src="js/keys.js"></script>
 
@@ -24,13 +27,72 @@
     (function (){
         "use strict";
 
-        mapboxgl.accessToken = MY_MAPBOX_API_KEY;
+        let accessToken = MY_MAPBOX_API_KEY
+        mapboxgl.accessToken = accessToken;
         let map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/mapbox/dark-v10',
-            zoom: 10,
-            center: [-98.4936, 29.4241]
+            container: 'firstMap', //div container
+            style: 'mapbox://styles/mapbox/dark-v10', //style url
+            center: [-98.50707, 29.46440], //starting [lang, lad]
+            zoom: 10 //starting zoom
+        });
+
+        function marker(coordinates){
+            return new mapboxgl.Marker()
+                .setLngLat(coordinates)
+                .addTo(map)
+        }
+
+        function popup(description){
+            return new mapboxgl.Popup()
+                .setHTML(description)
+                .addTo(map)
+        }
+
+        let geocoder = new MapboxGeocoder({
+            accessToken: MY_MAPBOX_API_KEY,
+            mapboxgl: mapboxgl,
+            marker: false
         })
+        geocoder.addTo(map)
+
+        geocoder.on("result", function (e){
+            console.log(e)
+            marker(e.result.center).setPopup(popup(e.result.place_name))
+        })
+
+        // let marker = new mapboxgl.Marker()
+        //     .setLngLat([-98.498897, 29.48953])
+        //     .addTo(map)
+        //
+        // let popup = new mapboxgl.Popup()
+        //     .setLngLat([-98.498897, 29.48953])
+        //     .setHTML("<p>That is some good Whataburger</p>")
+        //     .addTo(map)
+
+        // let whataburgerInfo = {
+        //     address: "Whataburger at 5900 San Pedro Ave San Antonio, Tx",
+        //     popupHTML: "<p>That is some good Whataburger</p>"
+        // }
+        //
+        // let litttleCeasersInfo = {
+        //     address: "4431 Blanco Rd, San Antonio, TX 78212",
+        //     popupHTML: "<p>They have good Pizzas</p>"
+        // }
+        //
+        // function placeMarkerAndPopup (info, token, map){
+        //     geocode(info.address, token).then(function (coordinates){
+        //         let popup = new mapboxgl.Popup()
+        //             .setHTML(info.popupHTML)
+        //         let marker = new mapboxgl.Marker()
+        //             .setLngLat(coordinates)
+        //             .addTo(map)
+        //             .setPopup(popup)
+        //         popup.addTo(map)
+        //     })
+        // }
+        //
+        // placeMarkerAndPopup(whataburgerInfo, accessToken, map)
+        // placeMarkerAndPopup(litttleCeasersInfo, accessToken, map)
 
     })();
 
