@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewpoint" content="width=device-width, initial-scale=1">
+    <title>Weather Map</title>
+    <!--    bootstrap first-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!-- API Mapbox -->
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css" type="text/css">
+    <style>
+        #myMap{
+            width: 100%;
+            Height: 700px
+        }
+    </style>
+</head>
+<body>
+<div id="myMap"></div>
+<div class="container-fluid">
+    <div id="forecast-div" class="row">
+
+    </div>
+</div>
+<!-- Mapbox JS-->
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>
+<!-- Geocode JS-->
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
+<!-- JQuery-->
+<script src="js/jquery-2.2.4.js"></script>
+<!-- the API Key-->
+<script src="js/keys.js"></script>
+<!-- bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<!-- then other libraries -->
+<script src="https://kit.fontawesome.com/99fe95afd3.js" crossorigin="anonymous"></script>
+<script>
+    (function (){
+        "use strict";
+
+        let STARTING_COORDS = [-98.50707, 29.46440]
+
+        mapboxgl.accessToken = MY_MAPBOX_API_KEY;
+        let map = new mapboxgl.Map({
+            container: 'myMap', //div container
+            style: 'mapbox://styles/mapbox/dark-v10', //style url
+            center: STARTING_COORDS, //starting [lang, lad]
+            zoom: 10 //starting zoom
+        });
+        let marker;
+
+        function onMoveEnd(){
+            let coords = map.getCenter();
+            // console.log(coords)
+            marker.setLngLat(coords)
+            makePopupForCoords(coords)
+        }
+
+        map.on('moveend', onMoveEnd)
+
+        const coordinatesGeocoder = function (query){
+            const matches = query.match(
+                /^[ ]*(?:Lat: )?(-?\d+\.?\d*)[, ]+(?:Lng: )?(-?\d+\.?\d*)[ ]*$/i
+            );
+            if (!matches) {
+                return null;
+            }
+
+            function coordinateFeature(lng, lat) {
+                return {
+                    center: [lng, lat],
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [lng, lat]
+                    },
+                    place_name: 'Lat: ' + lat + ' Lng: ' + lng,
+                    place_type: ['coordinate'],
+                    properties: {},
+                    type: 'Feature'
+                };
+            }
+
+            const coord1 = Number(matches[1]);
+            const coord2 = Number(matches[2]);
+            const geocodes = [];
+
+            if (coord1 < -90 || coord1 > 90) {
+            // must be lng, lat
+                geocodes.push(coordinateFeature(coord1, coord2));
+            }
+
+            if (coord2 < -90 || coord2 > 90) {
+            // must be lat, lng
+                geocodes.push(coordinateFeature(coord2, coord1));
+            }
+
+            if (geocodes.length === 0) {
+            // else could be either lng, lat or lat, lng
+                geocodes.push(coordinateFeature(coord1, coord2));
+                geocodes.push(coordinateFeature(coord2, coord1));
+            }
+
+            return geocodes;
+        }
+
+        map.addControl(
+            new MapboxGeocoder({
+                accessToken: MY_MAPBOX_API_KEY,
+                localGeocoder: coordinatesGeocoder,
+                mapboxgl: mapboxgl,
+                placeholder: 'Try: -40, 170',
+                zoom: 15,
+                marker: false,
+                // flyTo: false,
+                reverseGeocode: true
+            })
+        )
+
+        $(document).ready(function (){
+             marker = new mapboxgl.Marker({
+                draggable: true
+            }).setLngLat(STARTING_COORDS)
+            .addTo(map)
+            marker.on('dragend', endOfMarkerDrag)
+        })
+
+        function endOfMarkerDrag(){
+            //grab marker coords when dropped
+            const coords = marker.getLngLat()
+
+            // console.log(coords)
+
+            //make a popup attached to marker
+            makePopupForCoords(coords)
+        }
+
+        function makePopupForCoords(coords){
+            const coordArray = [coords.lng, coords.lat];
+            const popup = new mapboxgl.Popup({closeOnClick: false})
+                .setLngLat(coordArray)
+                .setHTML('<p>' + coordArray.join(', ') +'</p>')
+                // .addTo(map)
+            marker.setPopup(popup)
+            popup.addTo(map)
+
+            doForecastingStuffForCoords(coordArray)
+        }
+
+        function doForecastingStuffForCoords(coords){
+            let lng = coords[0]
+            let lat = coords[1]
+            $.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&exclude=hourly,minutely&appid=${MY_WETHER_API_KEY}&units=imperial`)
+                .done(function (data){
+                    console.log(data)
+
+                    let todayHiTemp = data.daily[0].temp.max;
+                    let tomorrowHiTemp = data.daily[1].temp.max;
+                    let html = `
+<div class="col-12">
+    <p>Today's high is ${todayHiTemp}</p>
+    <p>Tomorrow's high is ${tomorrowHiTemp}</p>
+</div>
+`;
+
+                    $('#forecast-div').html(html)
+                })
+
+        }
+
+    })();
+</script>
+</body>
+</html>
