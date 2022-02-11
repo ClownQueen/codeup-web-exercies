@@ -173,12 +173,12 @@
                     let lastDayLowTemp = data.daily[5].temp.min;
                     let html = `
 <div class="col-12 row">
-    <p>&emsp;Today's high is ${todayHiTemp}, and low is ${todayLowTemp}</p>
-    <p>&emsp;Tomorrow's high is ${tomorrowHiTemp}, and low is ${tomorrowLowTemp}</p>
-    <p>&emsp;The Next Day's high is ${nextDayHiTemp}, and low is ${nextDayLowTemp}</p>
-    <p>&emsp;The Second Day's high is ${secondDayHiTemp}, and low is ${secondDayLowTemp}</p>
-    <p>&emsp;The Third Day's high is ${thirdDayHiTemp}, and low is ${thirdDayLowTemp}</p>
-    <p>&emsp;The Last Day's high is ${lastDayHiTemp}, and low is ${lastDayLowTemp}</p>
+    <p>&emsp;Today's high is ${parseInt(todayHiTemp)}, and low is ${parseInt(todayLowTemp)}</p>
+    <p>&emsp;Tomorrow's high is ${parseInt(tomorrowHiTemp)}, and low is ${parseInt(tomorrowLowTemp)}</p>
+    <p>&emsp;The Next Day's high is ${parseInt(nextDayHiTemp)}, and low is ${parseInt(nextDayLowTemp)}</p>
+    <p>&emsp;The Second Day's high is ${parseInt(secondDayHiTemp)}, and low is ${parseInt(secondDayLowTemp)}</p>
+    <p>&emsp;The Third Day's high is ${parseInt(thirdDayHiTemp)}, and low is ${parseInt(thirdDayLowTemp)}</p>
+    <p>&emsp;The Last Day's high is ${parseInt(lastDayHiTemp)}, and low is ${parseInt(lastDayLowTemp)}</p>
 </div>
 `;
 
