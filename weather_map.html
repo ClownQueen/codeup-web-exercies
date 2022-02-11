@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" name="viewpoint" content="width=device-width, initial-scale=1">
+<!--    <link rel="shortcut icon" href="favicon.ico">-->
     <title>Weather Map</title>
     <!--    bootstrap first-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
@@ -16,12 +17,12 @@
     </style>
 </head>
 <body>
-<div id="myMap"></div>
 <div class="container-fluid">
-    <div id="forecast-div" class="row">
+    <div id="forecast-div">
 
     </div>
 </div>
+<div id="myMap"></div>
 <!-- Mapbox JS-->
 <script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>
 <!-- Geocode JS-->
@@ -153,12 +154,31 @@
                 .done(function (data){
                     console.log(data)
 
+                    // let clearSky = `${data.daily.weather.main}<img src="http://openweathermap.org/img/w/01d.png" alt="Clear Skies">`
+                    // let cloudySky = `<img src="http://openweathermap.org/img/w/04d.png" alt="Cloudy">`
+                    // let lightRain = `<img src="http://openweathermap.org/img/w/10d.png" alt="Light Rain">`
+                    // let lightlyCloudy = `<img src="http://openweathermap.org/img/w/02d.png" alt="Lightly Cloudy">`
+                    // let snowing = `<img src="http://openweathermap.org/img/w/02d.png" alt="Snowing">`
                     let todayHiTemp = data.daily[0].temp.max;
-                    let tomorrowHiTemp = data.daily[1].temp.max;
+                    let todayLowTemp = data.daily[0].temp.min;
+                    let tomorrowLowTemp = data.daily[1].temp.max;
+                    let tomorrowHiTemp = data.daily[1].temp.min;
+                    let nextDayHiTemp = data.daily[2].temp.max;
+                    let nextDayLowTemp = data.daily[2].temp.min;
+                    let secondDayHiTemp = data.daily[3].temp.max;
+                    let secondDayLowTemp = data.daily[3].temp.min;
+                    let thirdDayHiTemp = data.daily[4].temp.max;
+                    let thirdDayLowTemp = data.daily[4].temp.min;
+                    let lastDayHiTemp = data.daily[5].temp.max;
+                    let lastDayLowTemp = data.daily[5].temp.min;
                     let html = `
-<div class="col-12">
-    <p>Today's high is ${todayHiTemp}</p>
-    <p>Tomorrow's high is ${tomorrowHiTemp}</p>
+<div class="col-12 row">
+    <p>&emsp;Today's high is ${todayHiTemp}, and low is ${todayLowTemp}</p>
+    <p>&emsp;Tomorrow's high is ${tomorrowHiTemp}, and low is ${tomorrowLowTemp}</p>
+    <p>&emsp;The Next Day's high is ${nextDayHiTemp}, and low is ${nextDayLowTemp}</p>
+    <p>&emsp;The Second Day's high is ${secondDayHiTemp}, and low is ${secondDayLowTemp}</p>
+    <p>&emsp;The Third Day's high is ${thirdDayHiTemp}, and low is ${thirdDayLowTemp}</p>
+    <p>&emsp;The Last Day's high is ${lastDayHiTemp}, and low is ${lastDayLowTemp}</p>
 </div>
 `;
 
