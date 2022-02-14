@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" name="viewpoint" content="width=device-width, initial-scale=1">
-<!--    <link rel="shortcut icon" href="favicon.ico">-->
+    <!--    <link rel="shortcut icon" href="favicon.ico">-->
     <title>Weather Map</title>
     <!--    bootstrap first-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <!-- API Mapbox -->
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />
-    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css" type="text/css">
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet'/>
+    <link rel="stylesheet"
+          href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css"
+          type="text/css">
     <style>
-        #myMap{
+        #myMap {
             width: 100%;
             Height: 700px
         }
@@ -32,11 +35,13 @@
 <!-- the API Key-->
 <script src="js/keys.js"></script>
 <!-- bootstrap -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
 <!-- then other libraries -->
 <script src="https://kit.fontawesome.com/99fe95afd3.js" crossorigin="anonymous"></script>
 <script>
-    (function (){
+    (function () {
         "use strict";
 
         let STARTING_COORDS = [-98.4936, 29.4241]
@@ -50,7 +55,8 @@
         });
         let marker;
 
-        function onMoveEnd(){
+
+        function onMoveEnd() {
             let coords = map.getCenter();
             // console.log(coords)
             marker.setLngLat(coords)
@@ -59,7 +65,7 @@
 
         map.on('moveend', onMoveEnd)
 
-        const coordinatesGeocoder = function (query){
+        const coordinatesGeocoder = function (query) {
             const matches = query.match(
                 /^[ ]*(?:Lat: )?(-?\d+\.?\d*)[, ]+(?:Lng: )?(-?\d+\.?\d*)[ ]*$/i
             );
@@ -86,17 +92,17 @@
             const geocodes = [];
 
             if (coord1 < -90 || coord1 > 90) {
-            // must be lng, lat
+                // must be lng, lat
                 geocodes.push(coordinateFeature(coord1, coord2));
             }
 
             if (coord2 < -90 || coord2 > 90) {
-            // must be lat, lng
+                // must be lat, lng
                 geocodes.push(coordinateFeature(coord2, coord1));
             }
 
             if (geocodes.length === 0) {
-            // else could be either lng, lat or lat, lng
+                // else could be either lng, lat or lat, lng
                 geocodes.push(coordinateFeature(coord1, coord2));
                 geocodes.push(coordinateFeature(coord2, coord1));
             }
@@ -117,15 +123,15 @@
             })
         )
 
-        $(document).ready(function (){
-             marker = new mapboxgl.Marker({
+        $(document).ready(function () {
+            marker = new mapboxgl.Marker({
                 draggable: true
             }).setLngLat(STARTING_COORDS)
-            .addTo(map)
+                .addTo(map)
             marker.on('dragend', endOfMarkerDrag)
         })
 
-        function endOfMarkerDrag(){
+        function endOfMarkerDrag() {
             //grab marker coords when dropped
             const coords = marker.getLngLat()
 
@@ -135,30 +141,41 @@
             makePopupForCoords(coords)
         }
 
-        function makePopupForCoords(coords){
+        function makePopupForCoords(coords) {
             const coordArray = [coords.lng, coords.lat];
             const popup = new mapboxgl.Popup({closeOnClick: false})
                 .setLngLat(coordArray)
-                .setHTML('<p>' + coordArray.join(', ') +'</p>')
-                // .addTo(map)
+                .setHTML('<p>' + coordArray.join(', ') + '</p>')
+            // .addTo(map)
             marker.setPopup(popup)
             popup.addTo(map)
 
             doForecastingStuffForCoords(coordArray)
         }
 
-        function doForecastingStuffForCoords(coords){
+        // function setDate(utc){
+        //     console.log(new Date(utc * 1000).toLocaleDateString(navigator.language))
+        //     return new Date(utc * 1000).toLocaleDateString(navigator.language)
+        // }
+
+        function doForecastingStuffForCoords(coords) {
             let lng = coords[0]
             let lat = coords[1]
             $.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&exclude=hourly,minutely&appid=${MY_WETHER_API_KEY}&units=imperial`)
-                .done(function (data){
+                .done(function (data) {
                     console.log(data)
 
-                    // let clearSky = `${data.daily.weather.main}<img src="http://openweathermap.org/img/w/01d.png" alt="Clear Skies">`
-                    // let cloudySky = `<img src="http://openweathermap.org/img/w/04d.png" alt="Cloudy">`
-                    // let lightRain = `<img src="http://openweathermap.org/img/w/10d.png" alt="Light Rain">`
-                    // let lightlyCloudy = `<img src="http://openweathermap.org/img/w/02d.png" alt="Lightly Cloudy">`
-                    // let snowing = `<img src="http://openweathermap.org/img/w/02d.png" alt="Snowing">`
+                    // function setDailyBackground (icon){
+                    //     if(icon === '13d'){
+                    //         return 'snow'
+                    //     } else if (icon === '09D' || icon === '10d' || icon === '11d'){
+                    //         return 'cloudy'
+                    //     }else if (icon === '02d' || icon === '04d' || icon === '05d'){
+                    //         return 'cloudy'
+                    //     } else {
+                    //         return 'clear-day'
+                    //     }
+                    // }
                     let todayHiTemp = data.daily[0].temp.max;
                     let todayLowTemp = data.daily[0].temp.min;
                     let tomorrowLowTemp = data.daily[1].temp.max;
