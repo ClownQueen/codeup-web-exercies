@@ -15,7 +15,7 @@
     <style>
         #myMap {
             width: 100%;
-            Height: 700px
+            Height: 600px
         }
     </style>
 </head>
@@ -176,26 +176,34 @@
                     //         return 'clear-day'
                     //     }
                     // }
+                    //daily.weather.icon
+                    // const weather = `http://openweathermap.org/img/w/${setDailyBackground.daily.weather.id}.png`;
                     let todayHiTemp = data.daily[0].temp.max;
                     let todayLowTemp = data.daily[0].temp.min;
+                    let todayWeather = data.daily[0].weather[0].main;
                     let tomorrowLowTemp = data.daily[1].temp.max;
                     let tomorrowHiTemp = data.daily[1].temp.min;
+                    let tomorrowWeather = data.daily[1].weather[0].main;
                     let nextDayHiTemp = data.daily[2].temp.max;
                     let nextDayLowTemp = data.daily[2].temp.min;
+                    let nextDayWeather = data.daily[2].weather[0].main;
                     let secondDayHiTemp = data.daily[3].temp.max;
                     let secondDayLowTemp = data.daily[3].temp.min;
+                    let secondDayWeather = data.daily[3].weather[0].main;
                     let thirdDayHiTemp = data.daily[4].temp.max;
                     let thirdDayLowTemp = data.daily[4].temp.min;
+                    let thirdDayWeather = data.daily[4].weather[0].main;
                     let lastDayHiTemp = data.daily[5].temp.max;
                     let lastDayLowTemp = data.daily[5].temp.min;
+                    let lastDayWeather = data.daily[5].weather[0].main;
                     let html = `
 <div class="col-12 row">
-    <p>&emsp;Today's high is ${parseInt(todayHiTemp)}, and low is ${parseInt(todayLowTemp)}</p>
-    <p>&emsp;Tomorrow's high is ${parseInt(tomorrowHiTemp)}, and low is ${parseInt(tomorrowLowTemp)}</p>
-    <p>&emsp;The Next Day's high is ${parseInt(nextDayHiTemp)}, and low is ${parseInt(nextDayLowTemp)}</p>
-    <p>&emsp;The Second Day's high is ${parseInt(secondDayHiTemp)}, and low is ${parseInt(secondDayLowTemp)}</p>
-    <p>&emsp;The Third Day's high is ${parseInt(thirdDayHiTemp)}, and low is ${parseInt(thirdDayLowTemp)}</p>
-    <p>&emsp;The Last Day's high is ${parseInt(lastDayHiTemp)}, and low is ${parseInt(lastDayLowTemp)}</p>
+    <p>&emsp;Today's high is ${parseInt(todayHiTemp)}, and low is ${parseInt(todayLowTemp)} ${todayWeather}</p>
+    <p>&emsp;Tomorrow's high is ${parseInt(tomorrowHiTemp)}, and low is ${parseInt(tomorrowLowTemp)} ${tomorrowWeather}</p>
+    <p>&emsp;The Next Day's high is ${parseInt(nextDayHiTemp)}, and low is ${parseInt(nextDayLowTemp)} ${nextDayWeather}</p>
+    <p>&emsp;The Second Day's high is ${parseInt(secondDayHiTemp)}, and low is ${parseInt(secondDayLowTemp)} ${secondDayWeather}</p>
+    <p>&emsp;The Third Day's high is ${parseInt(thirdDayHiTemp)}, and low is ${parseInt(thirdDayLowTemp)} ${thirdDayWeather}</p>
+    <p>&emsp;The Last Day's high is ${parseInt(lastDayHiTemp)}, and low is ${parseInt(lastDayLowTemp)} ${lastDayWeather}</p>
 </div>
 `;
 
