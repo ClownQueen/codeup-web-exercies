@@ -153,11 +153,6 @@
             doForecastingStuffForCoords(coordArray)
         }
 
-        // function setDate(utc){
-        //     console.log(new Date(utc * 1000).toLocaleDateString(navigator.language))
-        //     return new Date(utc * 1000).toLocaleDateString(navigator.language)
-        // }
-
         function doForecastingStuffForCoords(coords) {
             let lng = coords[0]
             let lat = coords[1]
@@ -165,37 +160,31 @@
                 .done(function (data) {
                     console.log(data)
 
-                    // function setDailyBackground (icon){
-                    //     if(icon === '13d'){
-                    //         return 'snow'
-                    //     } else if (icon === '09D' || icon === '10d' || icon === '11d'){
-                    //         return 'cloudy'
-                    //     }else if (icon === '02d' || icon === '04d' || icon === '05d'){
-                    //         return 'cloudy'
-                    //     } else {
-                    //         return 'clear-day'
-                    //     }
-                    // }
-                    //daily.weather.icon
-                    // const weather = `http://openweathermap.org/img/w/${setDailyBackground.daily.weather.id}.png`;
+                    //Today's Temp and Weather
                     let todayHiTemp = data.daily[0].temp.max;
                     let todayLowTemp = data.daily[0].temp.min;
                     let todayWeather = data.daily[0].weather[0].main;
+                    //Tomorrow's Temp and Weather
                     let tomorrowLowTemp = data.daily[1].temp.max;
                     let tomorrowHiTemp = data.daily[1].temp.min;
                     let tomorrowWeather = data.daily[1].weather[0].main;
+                    //Next Day's Temp and Weather
                     let nextDayHiTemp = data.daily[2].temp.max;
                     let nextDayLowTemp = data.daily[2].temp.min;
                     let nextDayWeather = data.daily[2].weather[0].main;
+                    //Second Day's Temp and Weather
                     let secondDayHiTemp = data.daily[3].temp.max;
                     let secondDayLowTemp = data.daily[3].temp.min;
                     let secondDayWeather = data.daily[3].weather[0].main;
+                    //Third Day's Temp and Weather
                     let thirdDayHiTemp = data.daily[4].temp.max;
                     let thirdDayLowTemp = data.daily[4].temp.min;
                     let thirdDayWeather = data.daily[4].weather[0].main;
+                    //Last Day's Temp and Weather
                     let lastDayHiTemp = data.daily[5].temp.max;
                     let lastDayLowTemp = data.daily[5].temp.min;
                     let lastDayWeather = data.daily[5].weather[0].main;
+
                     let html = `
 <div class="col-12 row">
     <p>&emsp;Today's high is ${parseInt(todayHiTemp)}, and low is ${parseInt(todayLowTemp)} ${todayWeather}</p>
