@@ -76,3 +76,5 @@ users.forEach(function(user) {
   }
 
   list += '</ul>';
+
+console.log(list)
