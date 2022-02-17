@@ -44,7 +44,7 @@ console.log(threeLanguages);
 
 // TODO: Use .map to create an array of strings where
 //  each element is a user's email address
-let emailAddress = users.map(emails => emails.email.split(','));
+let emailAddress = users.map(emails => emails.email);
 console.log(emailAddress);
 
 //  TODO: Use .reduce to get the total years of experience from the list of users.
