@@ -6,7 +6,24 @@
 const gitHubPromise = fetch('https://api.github.com/repos/ClownQueen/codeup-web-exercises/commits', {headers: {'Authorization': `token ${PROMISE_API_KEY}`}})
     .then(response => response.json())
     .catch(error => console.error(error));
-    console.log(gitHubPromise)
+console.log(gitHubPromise)
+
+$('#page-loader').html('Loading Page.....');
+const myPromise = new Promise((resolve, reject) =>{
+    setTimeout(() =>{
+        if (Math.random() > 0.5){
+            resolve('success')
+        } else {
+            reject('failure')
+        }
+    }, 4000);
+}).then((result) =>{
+    $('#page-loader').html(`Loading was a ${result}`)
+});
+myPromise.catch((error) =>{
+    $('#page-loader').html(`ERROR ${error}`)
+    console.log(error)
+});
 
 function wait(num){
         return new Promise((resolve, reject) => setTimeout(() =>{
