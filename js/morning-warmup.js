@@ -160,3 +160,32 @@
 // }
 //
 // console.log(countDuplicates("Mikewazawski"))
+
+/** Write a function called makePerson. It takes 2 arguments: personName and age.
+ personName must be at least 1 character long. age must be between 1 and 150.
+ If either of the parameters is invalid, output an appropriate message to the console and return FALSE.
+ If both parameters are valid, return an object containing personName and age.
+ E.g.,
+ console.log(makePerson("Bob", 30)); // outputs {personName:"Bob", age:30}
+ console.log(makePerson("", 30));
+ // outputs:
+ Person name cannot be blank
+ false */
+
+// function makePerson(personName, personAge) {
+//     if (personName === ""){
+//         console.log("Please enter a name.")
+//         return false
+//     }
+//     if (personAge < 1 || personAge > 50){
+//         console.log("Make sure you have the correct age.")
+//         return false
+//     }
+//     return {personName, personAge}
+// }
+//
+// console.log(makePerson("Bob", 30))
+// console.log(makePerson("", 30))
+//
+// console.log(makePerson("Pj", 15))
+// console.log(makePerson("Mikey", -20))
